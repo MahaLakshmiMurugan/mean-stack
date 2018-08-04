@@ -1,5 +1,23 @@
-<div class="jumbotron text-center">
-	<h1>Nerds and Proud</h1>
-
-	<p>{{ tagline }}</p>
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Action</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+			<tr>
+				<td>
+					<input class="form-control" ng-model="user.firstname">
+				</td>
+				<td>
+					<input class="form-control" ng-model="user.lastname">
+                </td>
+                <td>
+                        <button class="btn btn-primary" ng-click="addUser()">Add User</button>
+                </td>
+                </tr>
+                </tbody>                
+</table>
