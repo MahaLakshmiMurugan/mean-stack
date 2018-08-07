@@ -6,6 +6,50 @@ module.exports = function(app) {
 
 	// frontend routes =========================================================
 	// route to handle all angular requests
+
+	app.get('/nerds', function(req, res) {
+		console.log('Getting user list...');
+		var Nerd = require('./models/Nerd');
+		var Nerd = Nerd.find().exec(function (err, docs) {
+			res.json(docs);
+		});
+	}); 
+	
+	app.post('/nerds', function(req, res) {
+		console.log('Inserting user list...');
+		var Nerd = require('./models/Nerd');
+		new Nerd(req.body).save(function (err, docs) {
+			res.json(docs);
+		});
+	});
+
+	app.delete('/nerds/:id', function(req, res) {
+		console.log('Deleting user...');
+		var id = req.params.id;
+		var Nerd = require('./models/Nerd');
+		Nerd.deleteOne({ _id: id }, function (err, docs) {
+			res.json(docs);
+		});
+	});
+
+	app.get('/nerds/:id', function(req, res) {
+		console.log('Getting single user...');
+		var id = req.params.id;
+		var Nerd = require('./models/Nerd');
+		Nerd.findOne({ _id: id }, function (err, docs) {
+			res.json(docs);
+		});
+	});
+ 	app.put('/nerds/:id', function(req, res) {
+		console.log('Updating single user...');
+		var id = req.params.id;
+		var Nerd = require('./models/Nerd');
+		Nerd.findOneAndUpdate({ _id: id }, { $set: req.body}, function (err, docs) {
+			res.json(docs);
+		});
+	});
+
+	
 	app.get('/contacts', function(req, res) {
 		console.log('Getting contact list...');
 		var ContactList = require('./models/ContactList');

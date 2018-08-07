@@ -10,14 +10,28 @@
     <tbody>
 			<tr>
 				<td>
-					<input class="form-control" ng-model="user.firstname">
+					<input class="form-control" ng-model="nerd.bugName">
 				</td>
 				<td>
-					<input class="form-control" ng-model="user.lastname">
+					<input class="form-control" ng-model="nerd.bugColour">
                 </td>
                 <td>
                         <button class="btn btn-primary" ng-click="addUser()">Add User</button>
                 </td>
+                <td>
+                    <button class="btn btn-info" ng-click="update()">Update</button>&nbsp;&nbsp;
+                    <button class="btn btn-info" ng-click="clear()">Clear</button>
+                </td>
+                </tr>
+                <tr ng-repeat="n in nerds">
+                    <td>{{n.bugName}}</td>
+                    <td>{{n.bugColour}}</td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="remove(n._id)">Remove</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" ng-click="edit(n._id)">Edit</button>
+                    </td>
                 </tr>
                 </tbody>                
 </table>
