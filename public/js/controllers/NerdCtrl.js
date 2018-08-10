@@ -1,41 +1,45 @@
-angular.module('NerdCtrl', []).controller('NerdController', function($scope, $http) {
+angular.module('NerdCtrl', []).controller('NerdController', function($scope, $http, $routeParams) {
 
 	var refresh = function () {
-		$http.get('/nerds').then(function (response) {
+		$http.get('/users').then(function (response) {
 			console.log('test');
-			$scope.nerds = response.data;
-			$scope.nerd = null;
+			$scope.users = response.data;
+			$scope.user = null;
 		});
 	};
 
 	refresh();
 
 	$scope.addUser = function () {
-		$http.post('/nerds', $scope.nerd).then(function (response) {
+		$http.post('/users', $scope.nerd).then(function (response) {
 			console.log(response.data);
 			refresh();
 		});
 	};
 
 	$scope.remove = function (id) {
-		$http.delete('/nerds/' + id).then(function (response) {
+		$http.delete('/users/' + id).then(function (response) {
 			refresh();
 		});
 	};
 
 	$scope.edit = function (id) {
-		$http.get('/nerds/' + id).then(function (response) {
-			$scope.nerd = response.data;
+		$http.get('/users/' + id).then(function (response) {
+			$scope.user = response.data;
 		});
 	};
 
 	$scope.update = function () {
-		$http.put('/nerds/' + $scope.nerd._id, $scope.nerd).then(function (response) {
+		$http.put('/users/' + $scope.nerd._id, $scope.nerd).then(function (response) {
 			refresh();
 		});
 	};
 
+	$http.get('/view-user/' + $routeParams.id).then(function (response) {
+		$scope.user = response.data;
+	});
+
 	$scope.clear = function () {
-		$scope.nerd = null;
+		$scope.user = null;
 	}	
 });

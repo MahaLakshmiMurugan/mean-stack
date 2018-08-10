@@ -19,19 +19,24 @@
                         <button class="btn btn-primary" ng-click="addUser()">Add User</button>
                 </td>
                 <td>
-                    <button class="btn btn-info" ng-click="update()">Update</button>&nbsp;&nbsp;
+                    <button class="btn btn-info" ng-click="update()">Update</button>
+                </td>
+                <td>
                     <button class="btn btn-info" ng-click="clear()">Clear</button>
                 </td>
                 </tr>
-                <tr ng-repeat="n in nerds">
-                    <td>{{n.bugName}}</td>
-                    <td>{{n.bugColour}}</td>
+                <tr ng-repeat="user in users">
+                    <td>{{user.bugName}}</td>
+                    <td>{{user.bugColour}}</td>
                     <td>
-                        <button class="btn btn-danger" ng-click="remove(n._id)">Remove</button>
+                        <button class="btn btn-danger" ng-click="remove(user._id)">Remove</button>
                     </td>
                     <td>
-                        <button class="btn btn-warning" ng-click="edit(n._id)">Edit</button>
+                        <button class="btn btn-warning" ng-click="edit(user._id)">Edit</button>
                     </td>
+                    <td>
+                        <a href="/view-user/{{ user._id }}" class="btn btn-primary">View</a>
+                    </td
                 </tr>
                 </tbody>                
 </table>

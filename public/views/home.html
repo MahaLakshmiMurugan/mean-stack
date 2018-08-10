@@ -23,7 +23,9 @@
 				<button class="btn btn-primary" ng-click="addContact()">Add Contact</button>
 			</td>
 			<td>
-				<button class="btn btn-info" ng-click="update()">Update</button>&nbsp;&nbsp;
+				<button class="btn btn-info" ng-click="update()">Update</button>
+			</td>
+            <td>
 				<button class="btn btn-info" ng-click="clear()">Clear</button>
 			</td>
 		</tr>
@@ -37,6 +39,9 @@
 			<td>
 				<button class="btn btn-warning" ng-click="edit(contact._id)">Edit</button>
 			</td>
+			<td>
+                <a href="/view/{{ contact._id }}" class="btn btn-primary">View</a>
+            </td
 		</tr>
 	</tbody>
 </table>

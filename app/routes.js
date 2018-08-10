@@ -7,7 +7,7 @@ module.exports = function(app) {
 	// frontend routes =========================================================
 	// route to handle all angular requests
 
-	app.get('/nerds', function(req, res) {
+	app.get('/users', function(req, res) {
 		console.log('Getting user list...');
 		var Nerd = require('./models/Nerd');
 		var Nerd = Nerd.find().exec(function (err, docs) {
@@ -15,7 +15,7 @@ module.exports = function(app) {
 		});
 	}); 
 	
-	app.post('/nerds', function(req, res) {
+	app.post('/users', function(req, res) {
 		console.log('Inserting user list...');
 		var Nerd = require('./models/Nerd');
 		new Nerd(req.body).save(function (err, docs) {
@@ -23,7 +23,7 @@ module.exports = function(app) {
 		});
 	});
 
-	app.delete('/nerds/:id', function(req, res) {
+	app.delete('/users/:id', function(req, res) {
 		console.log('Deleting user...');
 		var id = req.params.id;
 		var Nerd = require('./models/Nerd');
@@ -32,7 +32,7 @@ module.exports = function(app) {
 		});
 	});
 
-	app.get('/nerds/:id', function(req, res) {
+	app.get('/users/:id', function(req, res) {
 		console.log('Getting single user...');
 		var id = req.params.id;
 		var Nerd = require('./models/Nerd');
@@ -40,11 +40,20 @@ module.exports = function(app) {
 			res.json(docs);
 		});
 	});
- 	app.put('/nerds/:id', function(req, res) {
+ 	app.put('/users/:id', function(req, res) {
 		console.log('Updating single user...');
 		var id = req.params.id;
 		var Nerd = require('./models/Nerd');
 		Nerd.findOneAndUpdate({ _id: id }, { $set: req.body}, function (err, docs) {
+			res.json(docs);
+		});
+	});
+
+	app.get('/view-user/:id', function(req, res) {
+		console.log('Viewing single user...');
+		var id = req.params.id;
+		var Nerd = require('./models/Nerd');
+		Nerd.findOne({ _id: id }, function (err, docs) {
 			res.json(docs);
 		});
 	});
@@ -86,6 +95,14 @@ module.exports = function(app) {
 		var id = req.params.id;
 		var ContactList = require('./models/ContactList');
 		ContactList.findOneAndUpdate({ _id: id }, { $set: req.body}, function (err, docs) {
+			res.json(docs);
+		});
+	});
+	app.get('/view/:id', function(req, res) {
+		console.log('Viewing single contact...');
+		var id = req.params.id;
+		var ContactList = require('./models/ContactList');
+		ContactList.findOne({ _id: id }, function (err, docs) {
 			res.json(docs);
 		});
 	});

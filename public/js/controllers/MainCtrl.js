@@ -1,4 +1,4 @@
-angular.module('MainCtrl', []).controller('MainController', function($scope, $http) {
+angular.module('MainCtrl', []).controller('MainController', function($scope, $http, $routeParams) {
 
 	var refresh = function () {
 		$http.get('/contacts').then(function (response) {
@@ -34,6 +34,10 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 			refresh();
 		});
 	};
+
+	$http.get('/view/' + $routeParams.id).then(function (response) {
+		$scope.contact = response.data;
+	});
 
 	$scope.clear = function () {
 		$scope.contact = null;
